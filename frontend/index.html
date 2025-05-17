@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Release Optimizer</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎬 Movie Release Optimization Tool</h1>
+    <form id="predict-form">
+      <label for="genre">Select Genre:</label>
+      <select id="genre">
+        <option value="Romance">Romance</option>
+        <option value="Action">Action</option>
+        <option value="Thriller">Thriller</option>
+      </select>
+
+      <label for="platform">Distribution Platform:</label>
+      <select id="platform">
+        <option value="Cinema">Cinema</option>
+        <option value="OTT">OTT</option>
+        <option value="Both">Both</option>
+      </select>
+
+      <label for="region">Region:</label>
+      <select id="region">
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="Global">Global</option>
+      </select>
+
+      <button type="submit">Predict Best Release Time</button>
+    </form>
+
+    <div id="result"></div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
