@@ -1,0 +1,14 @@
+# Ignore Python
+__pycache__/
+*.pyc
+env/
+venv/
+.ipynb_checkpoints/
+
+# Ignore Node
+node_modules/
+.env
+
+# Ignore system files
+.DS_Store
+*.log
