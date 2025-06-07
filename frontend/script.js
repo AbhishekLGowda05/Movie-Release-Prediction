@@ -26,18 +26,42 @@ document.getElementById("predict-form").addEventListener("submit", async functio
     if (data.error) {
       resultEl.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${data.error}</div>`;
     } else {
-      let confidenceHTML = "";
-      for (let season in data.confidence_scores) {
-        confidenceHTML += `<li>${season}: ${data.confidence_scores[season]}%</li>`;
-      }
+      const scores = data.confidence_scores;
+      const seasons = Object.keys(scores);
+      const values = Object.values(scores);
 
       resultEl.innerHTML = `
         <div class="alert alert-success shadow-sm">
           <h4 class="alert-heading">📅 Recommended Release Season: <strong>${data.predicted_season}</strong></h4>
-          <p>📊 Confidence Scores:</p>
-          <ul>${confidenceHTML}</ul>
+          <p>📊 Confidence chart shown below:</p>
         </div>
       `;
+
+      // Remove previous chart if any
+      if (window.chartInstance) {
+        window.chartInstance.destroy();
+      }
+
+      const ctx = document.getElementById("confidenceChart").getContext("2d");
+      window.chartInstance = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: seasons,
+          datasets: [{
+            label: "Prediction Confidence (%)",
+            data: values,
+            backgroundColor: "#4e73df"
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100
+            }
+          }
+        }
+      });
     }
   } catch (err) {
     loadingEl.style.display = "none";
